@@ -18,7 +18,7 @@ of each variable for each activity and each subject.
 
 Basic assumption : the zip file (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) is downloaded and unzipped into the R Home Directory of(~/UCI HAR Dataset/)
 
-### loading the necessary librarys for the script
+### Loading the necessary librarys for the script
 ```{r}
 library(data.table)
 library(dtplyr)
@@ -53,7 +53,9 @@ c_data<- rbind(datatrain, datatest)
 ### Applying the labels from features.txt file to column headers of combined data table
 ```{r}
 colnames(c_data)<- t(featurelist[,2])
-#Changing all data table variables to lower case.
+```
+### Changing all data table variables to lower case.
+```{r}
 colnames(c_data)<- tolower(names(c_data))
 ```
 ### Applying variable names to combined activity and subject data tables.
@@ -73,7 +75,7 @@ print(dim(completedata))
 ```
 
 ## Part 3-Uses descriptive activity names to name the activities in the data set
-###applying the activity index to the dataset and moving the activity variable to the left of the table.
+### Applying the activity index to the dataset and moving the activity variable to the left of the table.
 ```{r}
 activitybycat<-merge(completedata, activityindex, by.x = "activity", by.y="V1", all.x=T)
 activitybycat$activity<-activitybycat$V2
